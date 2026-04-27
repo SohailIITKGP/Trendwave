@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #101828;
+  --primary-accent-color: #3b82f6;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Enforce Inter across the website */
+html,
+body,
+*,
+*::before,
+*::after {
+  font-family: "Inter", var(--font-inter), sans-serif !important;
+}
+
+/* Navbar styles */
+header {
+  backdrop-filter: saturate(120%);
+}
+
+/* Smooth transitions for links */
+a {
+  transition: color 0.2s ease;
+}
+
+/* Custom scrollbar for better appearance */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Navigation Custom Classes */
+.nav-link {
+  @apply text-black text-base no-underline transition-colors whitespace-nowrap;
+}
+
+.nav-link:hover {
+  @apply text-blue-600;
+}
+
+.nav-dropdown-item {
+  @apply block text-black text-base no-underline transition-all;
+}
+
+.nav-dropdown-item:hover {
+  @apply text-blue-600;
+}
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+  border: none;
+  background: var(--primary-accent-color);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  @apply no-underline shrink-0 whitespace-nowrap flex items-center justify-center;
+}
+
+.btn-primary:hover {
+  filter: brightness(110%);
+}
+
