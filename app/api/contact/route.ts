@@ -16,6 +16,48 @@ function isTransientSmtpError(error: unknown) {
   );
 }
 
+function cleanInput(value: unknown) {
+  return typeof value === 'string' ? value.trim().replace(/\s+/g, ' ') : '';
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function toHtmlParagraphs(value: string) {
+  return escapeHtml(value).replace(/\n/g, '<br>');
+}
+
+function buildTextBlock(lines: string[]) {
+  return lines.filter(Boolean).join('\n');
+}
+
+function getMessageIdDomain(officeEmail: string | undefined, emailUser: string) {
+  const source = officeEmail || emailUser;
+  const domain = source.split('@')[1];
+  return domain || 'trendwavetech.com';
+}
+
+function createMessageId(domain: string, label: string) {
+  const randomPart = Math.random().toString(36).slice(2, 10);
+  return `<${label}.${Date.now()}.${randomPart}@${domain}>`;
+}
+
+function createBaseHeaders(messageId: string) {
+  return {
+    'X-Mailer': 'Trendwave Contact Mailer',
+    'X-Entity-Ref-ID': messageId,
+    'X-Priority': '3',
+    'X-MSMail-Priority': 'Normal',
+    Importance: 'Normal',
+  };
+}
+
 async function sendMailWithRetry(
   primaryTransporter: nodemailer.Transporter,
   fallbackTransporter: nodemailer.Transporter | null,
@@ -49,16 +91,14 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, contactNo, message } = await request.json();
 
-    if (!name || !email || !contactNo || !message) {
+    const trimmedName = cleanInput(name);
+    const trimmedEmail = cleanInput(email);
+    const trimmedContactNo = cleanInput(contactNo);
+    const trimmedMessage = typeof message === 'string' ? message.trim() : '';
+
+    if (!trimmedName || !trimmedEmail || !trimmedContactNo || !trimmedMessage) {
       return NextResponse.json(
         { error: 'All fields are required.' },
-        { status: 400 }
-      );
-    }
-
-    if (!name.trim() || !email.trim() || !contactNo.trim() || !message.trim()) {
-      return NextResponse.json(
-        { error: 'All fields must contain valid text.' },
         { status: 400 }
       );
     }
@@ -81,14 +121,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const fromAddress = `"Trendwave" <${emailUser}>`;
+    const replyToAddress = officeEmail || emailUser;
+    const messageIdDomain = getMessageIdDomain(officeEmail, emailUser);
+    const userMessageId = createMessageId(messageIdDomain, 'contact-confirmation');
+    const companyMessageId = createMessageId(messageIdDomain, 'contact-notification');
+
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
       secure: smtpPort === 465,
       requireTLS: smtpPort === 587,
+      tls: {
+        minVersion: 'TLSv1.2',
+        rejectUnauthorized: true,
+      },
       connectionTimeout: 15000,
       greetingTimeout: 10000,
       socketTimeout: 20000,
+      authMethod: 'PLAIN',
       auth: {
         user: emailUser,
         pass: emailPassword,
@@ -104,9 +155,14 @@ export async function POST(request: NextRequest) {
           host: 'smtp.gmail.com',
           port: 465,
           secure: true,
+          tls: {
+            minVersion: 'TLSv1.2',
+            rejectUnauthorized: true,
+          },
           connectionTimeout: 15000,
           greetingTimeout: 10000,
           socketTimeout: 20000,
+          authMethod: 'PLAIN',
           auth: {
             user: emailUser,
             pass: emailPassword,
@@ -116,59 +172,92 @@ export async function POST(request: NextRequest) {
         })
       : null;
 
+    const escapedName = escapeHtml(trimmedName);
+    const escapedEmail = escapeHtml(trimmedEmail);
+    const escapedContactNo = escapeHtml(trimmedContactNo);
+    const escapedMessage = toHtmlParagraphs(trimmedMessage);
+
     // Email to user
     const userMailOptions = {
-      from: emailUser,
-      to: email,
-      subject: `We received your message - Trendwave`,
+      from: fromAddress,
+      to: trimmedEmail,
+      replyTo: replyToAddress,
+      subject: 'Thanks for contacting Trendwave',
+      text: buildTextBlock([
+        `Hi ${trimmedName},`,
+        '',
+        'Thanks for contacting Trendwave. We have received your message and will review it shortly.',
+        '',
+        'Your submission:',
+        `Name: ${trimmedName}`,
+        `Phone: ${trimmedContactNo}`,
+        `Message: ${trimmedMessage}`,
+        '',
+        'Best regards,',
+        'Trendwave',
+        '',
+        `This message was sent to ${trimmedEmail} after a form submission on the Trendwave website.`,
+      ]),
       html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 500px; margin: 0 auto; color: #333333; line-height: 1.6; padding: 20px;">
-          <h2 style="font-weight: 600; font-size: 20px; color: #111111; margin: 0 0 30px 0;">Trendwave</h2>
-          
-          <p style="margin: 0 0 15px 0;">Hi ${name},</p>
-          
-          <p style="margin: 0 0 15px 0;">Thanks for reaching out. We've received your message and someone from our team will get back to you shortly.</p>
-          
-          <p style="margin: 0 0 25px 0;">For your records, here is a copy of what you sent us:</p>
-          
-          <div style="background-color: #f9f9f9; padding: 20px; border-radius: 6px; margin: 0 0 30px 0;">
-            <p style="margin: 0 0 10px 0;"><strong>Name:</strong> ${name}</p>
-            <p style="margin: 0 0 10px 0;"><strong>Phone:</strong> ${contactNo}</p>
-            <p style="margin: 0 0 5px 0;"><strong>Message:</strong></p>
-            <p style="margin: 0; white-space: pre-wrap; color: #555555;">${message}</p>
+        <div style="font-family: Arial, Helvetica, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; color: #1f2937; line-height: 1.6;">
+          <div style="padding-bottom: 16px; border-bottom: 1px solid #e5e7eb; margin-bottom: 20px;">
+            <p style="margin: 0; font-size: 20px; font-weight: 600; color: #111827;">Trendwave</p>
           </div>
-          
-          <p style="margin: 0 0 5px 0;">Best regards,</p>
-          <p style="margin: 0 0 30px 0;">The Trendwave Team</p>
-          
-          <hr style="border: none; border-top: 1px solid #eeeeee; margin: 0 0 20px 0;">
-          <p style="color: #999999; font-size: 12px; margin: 0;">This email was sent to ${email} because you submitted a contact form on the Trendwave website.</p>
+
+          <p style="margin: 0 0 16px 0;">Hi ${escapedName},</p>
+          <p style="margin: 0 0 16px 0;">Thanks for contacting Trendwave. We have received your message and will review it shortly.</p>
+
+          <div style="margin: 20px 0; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb;">
+            <p style="margin: 0 0 8px 0;"><strong>Name:</strong> ${escapedName}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Phone:</strong> ${escapedContactNo}</p>
+            <p style="margin: 0 0 6px 0;"><strong>Message:</strong></p>
+            <div style="white-space: pre-wrap;">${escapedMessage}</div>
+          </div>
+
+          <p style="margin: 0 0 8px 0;">Best regards,</p>
+          <p style="margin: 0;">Trendwave</p>
+          <p style="margin: 20px 0 0 0; font-size: 12px; color: #6b7280;">This message was sent to ${escapedEmail} after a form submission on the Trendwave website.</p>
         </div>
       `,
+      messageId: userMessageId,
+      headers: createBaseHeaders(userMessageId),
     };
 
     // Email to company
     const companyMailOptions = {
-      from: emailUser,
+      from: fromAddress,
       to: officeEmail,
-      subject: `New website inquiry from ${name}`,
+      replyTo: trimmedEmail,
+      subject: `New inquiry from ${trimmedName}`,
+      text: buildTextBlock([
+        'New contact form submission',
+        '',
+        `Name: ${trimmedName}`,
+        `Email: ${trimmedEmail}`,
+        `Phone: ${trimmedContactNo}`,
+        '',
+        'Message:',
+        trimmedMessage,
+      ]),
       html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333333; line-height: 1.5; padding: 20px;">
-          <h2 style="font-weight: 600; font-size: 18px; color: #111111; border-bottom: 1px solid #eeeeee; padding-bottom: 15px; margin-top: 0 0 20px 0;">New Contact Form Submission</h2>
-          
-          <p style="margin: 0 0 10px 0;"><strong>Name:</strong> ${name}</p>
-          <p style="margin: 0 0 10px 0;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #0066cc; text-decoration: none;">${email}</a></p>
-          <p style="margin: 0 0 20px 0;"><strong>Phone:</strong> ${contactNo}</p>
-          
-          <p style="margin: 0 0 10px 0;"><strong>Message:</strong></p>
-          <div style="background-color: #f7f7f7; padding: 15px; border-radius: 4px; border-left: 3px solid #cccccc; white-space: pre-wrap; margin: 0 0 20px 0;">${message}</div>
+        <div style="font-family: Arial, Helvetica, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px; color: #1f2937; line-height: 1.6;">
+          <p style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #111827;">New contact form submission</p>
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; background: #ffffff;">
+            <p style="margin: 0 0 8px 0;"><strong>Name:</strong> ${escapedName}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Email:</strong> <a href="mailto:${escapedEmail}" style="color: #1d4ed8; text-decoration: none;">${escapedEmail}</a></p>
+            <p style="margin: 0 0 14px 0;"><strong>Phone:</strong> ${escapedContactNo}</p>
+            <p style="margin: 0 0 6px 0;"><strong>Message:</strong></p>
+            <div style="white-space: pre-wrap; padding: 14px; border-radius: 6px; background: #f9fafb; border: 1px solid #e5e7eb;">${escapedMessage}</div>
+          </div>
         </div>
       `,
+      messageId: companyMessageId,
+      headers: createBaseHeaders(companyMessageId),
     };
 
     // Send emails
     try {
-      const userEmailResponse = await sendMailWithRetry(
+      await sendMailWithRetry(
         transporter,
         gmailFallbackTransporter,
         userMailOptions,
@@ -180,7 +269,7 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      const companyEmailResponse = await sendMailWithRetry(
+      await sendMailWithRetry(
         transporter,
         gmailFallbackTransporter,
         companyMailOptions,
