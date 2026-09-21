@@ -144,6 +144,7 @@ export default function ContactUs() {
                   placeholder="Full Name"
                   value={formData.fullName}
                   onChange={handleChange}
+                  autoComplete="name"
                   required
                   maxLength={120}
                   className="h-11 w-full border-b border-[#b8bfcc] bg-transparent px-0 text-[17px] text-black placeholder:text-[#5b7296] focus:border-[#7c8da8] focus:outline-none transition-colors"
@@ -161,6 +162,7 @@ export default function ContactUs() {
                   placeholder="Phone Number"
                   value={formData.phoneNumber}
                   onChange={handleChange}
+                  autoComplete="tel"
                   required
                   maxLength={20}
                   className="h-11 w-full border-b border-[#b8bfcc] bg-transparent px-0 text-[17px] text-black placeholder:text-[#5b7296] focus:border-[#7c8da8] focus:outline-none transition-colors"
@@ -178,6 +180,7 @@ export default function ContactUs() {
                   placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
+                  autoComplete="email"
                   required
                   maxLength={254}
                   className="h-11 w-full border-b border-[#b8bfcc] bg-transparent px-0 text-[17px] text-black placeholder:text-[#5b7296] focus:border-[#7c8da8] focus:outline-none transition-colors"

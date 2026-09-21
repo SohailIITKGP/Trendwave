@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 
 export const siteConfig = {
   name: "Trendwave Technologies",
+  brand: "TrendwaveTech",
   legalName: "TrendWave Technologies Pvt Ltd",
   shortName: "Trendwave",
+  alternateNames: [
+    "Trendwave",
+    "Trendwave Tech",
+    "Trendwave Technologies",
+    "TrendwaveTech",
+  ],
   url: "https://www.trendwavetech.com",
   locale: "en-IN",
   email: "office@trendwavetech.com",
@@ -27,16 +34,28 @@ export const siteConfig = {
   serviceAreas: [
     "Delhi NCR",
     "Gurugram",
+    "Gurgaon",
     "Delhi",
     "Noida",
     "Faridabad",
     "Ghaziabad",
     "India",
+    "Haryana",
+    "Haryana, India",
+    "Rajasthan",
+    "west bengal",
+    "kolkata",
+    "Kharagpur"
   ],
-  defaultTitle: "Trendwave Technologies | IT & Security Solutions",
+  defaultTitle:
+    "TrendwaveTech | Security Systems, IT Infrastructure & Technology Solutions",
   defaultDescription:
-    "Trendwave Technologies delivers CCTV, ANPR, boom barriers, bollards, tyre killers, ACMS, IT support and software from Gurugram across Delhi NCR and India.",
-  ogImageAlt: "Trendwave Technologies — IT and security solutions",
+    "TrendwaveTech (Trendwave Technologies) in Gurugram, Haryana supplies and installs security systems, IT infrastructure and software — CCTV, access control, boom barriers, bollards, ANPR and IT support across Delhi NCR.",
+  ogImageAlt: "TrendwaveTech — security systems and IT infrastructure in Gurugram",
+  mapsEmbedSrc:
+    "https://maps.google.com/maps?q=304%20Welldone%20Tech%20Park%20Sector%2048%20Sohna%20Road%20Gurugram%20Haryana%20122018&output=embed",
+  mapsSearchUrl:
+    "https://www.google.com/maps/search/?api=1&query=304%20Welldone%20Tech%20Park%20Sector%2048%20Sohna%20Road%20Gurugram%20Haryana%20122018",
 } as const;
 
 export type KeywordTarget = {
@@ -46,6 +65,23 @@ export type KeywordTarget = {
 };
 
 export const keywordMap: KeywordTarget[] = [
+  { keyword: "Trendwave", path: "/" },
+  { keyword: "Trendwave Tech", path: "/" },
+  { keyword: "Trendwave Technologies", path: "/" },
+  { keyword: "TrendwaveTech", path: "/" },
+  { keyword: "TrendwaveTech Gurugram", path: "/company" },
+  { keyword: "Security systems supplier", path: "/services/surveillance" },
+  { keyword: "Security systems provider", path: "/services/surveillance" },
+  { keyword: "IT infrastructure solutions", path: "/services/it-infra" },
+  { keyword: "IT support services", path: "/services/it-infra" },
+  { keyword: "CCTV installation", path: "/products/cctv-installation" },
+  { keyword: "Access control system", path: "/products/acms" },
+  { keyword: "Automatic boom barrier", path: "/products/boom-barriers" },
+  { keyword: "Hydraulic bollards", path: "/products/hydraulic-bollards" },
+  { keyword: "Tyre killer", path: "/products/tyre-killers" },
+  { keyword: "Automatic number plate recognition", path: "/products/anpr" },
+  { keyword: "Vehicle access monitoring", path: "/products/vehicle-monitoring-system" },
+  { keyword: "Gate automation solutions", path: "/products" },
   {
     keyword: "Security Items Vendor",
     path: "/services/surveillance",
@@ -101,6 +137,7 @@ type PageMetadataInput = {
   description: string;
   path: string;
   index?: boolean;
+  absoluteTitle?: boolean;
 };
 
 export function buildPageMetadata({
@@ -108,11 +145,22 @@ export function buildPageMetadata({
   description,
   path,
   index = true,
+  absoluteTitle = false,
 }: PageMetadataInput): Metadata {
   const canonical = absoluteUrl(path);
+  const resolvedTitle = title
+    ? absoluteTitle
+      ? { absolute: title }
+      : title
+    : { absolute: siteConfig.defaultTitle };
+  const ogTitle = title
+    ? absoluteTitle
+      ? title
+      : `${title} | ${siteConfig.brand}`
+    : siteConfig.defaultTitle;
 
   return {
-    title: title ? title : { absolute: siteConfig.defaultTitle },
+    title: resolvedTitle,
     description,
     alternates: {
       canonical,
@@ -125,12 +173,12 @@ export function buildPageMetadata({
       locale: siteConfig.locale,
       url: canonical,
       siteName: siteConfig.name,
-      title: title ? `${title} | ${siteConfig.name}` : siteConfig.defaultTitle,
+      title: ogTitle,
       description,
     },
     twitter: {
       card: "summary_large_image",
-      title: title ? `${title} | ${siteConfig.name}` : siteConfig.defaultTitle,
+      title: ogTitle,
       description,
     },
   };
@@ -142,7 +190,9 @@ export function organizationJsonLd() {
     "@type": ["Organization", "LocalBusiness"],
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
+    alternateName: [...siteConfig.alternateNames],
     legalName: siteConfig.legalName,
+    description: siteConfig.defaultDescription,
     url: siteConfig.url,
     email: siteConfig.email,
     telephone: siteConfig.phones.mobileTel,
@@ -151,6 +201,14 @@ export function organizationJsonLd() {
       "@type": "ImageObject",
       url: absoluteUrl("/Logo1_converted.webp"),
     },
+    knowsAbout: [
+      "CCTV installation",
+      "Access control systems",
+      "Boom barriers",
+      "Hydraulic bollards",
+      "ANPR",
+      "IT infrastructure",
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.streetAddress,
@@ -192,7 +250,8 @@ export function websiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${siteConfig.url}/#website`,
-    name: siteConfig.name,
+    name: siteConfig.brand,
+    alternateName: [...siteConfig.alternateNames],
     url: siteConfig.url,
     publisher: {
       "@id": `${siteConfig.url}/#organization`,

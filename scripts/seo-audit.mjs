@@ -131,9 +131,10 @@ async function crawlIfRequested() {
   if (!sitemapRes.ok) fail(`Live /sitemap.xml failed: ${sitemapRes.status}`);
   const sitemapText = await sitemapRes.text();
   if (!sitemapText.includes("/products/boom-barriers")) fail("Sitemap missing boom-barriers URL.");
+  if (!sitemapText.includes("/contact")) fail("Sitemap missing /contact.");
   if (sitemapText.includes("/api/contact")) fail("Sitemap includes API URL.");
 
-  const samplePaths = ["/", "/services/surveillance", "/products/anpr", "/blog"];
+  const samplePaths = ["/", "/company", "/contact", "/services", "/products", "/services/surveillance", "/products/anpr", "/blog"];
   const titles = [];
   const descriptions = [];
 

@@ -18,16 +18,10 @@ export default function SurveillanceServicesPage() {
         <div className="relative z-20 mx-auto flex h-full min-h-[60vh] sm:min-h-[70vh] lg:min-h-[75vh] w-full max-w-7xl items-center justify-center px-4 pb-32 pt-20 text-center sm:px-6 sm:pb-40 lg:px-8 lg:pb-48">
           <div className="w-full max-w-4xl text-white sm:max-w-5xl">
             <h1 className="mx-auto w-full pt-8 text-[clamp(1.95rem,8.2vw,5.4rem)] font-bold leading-[1.12] tracking-[-0.02em] sm:leading-[1.08]">
-              <span className="block">Built on Expertise.</span>
-              <span className="block">Driven by Execution.</span>
+              <span className="block">TrendwaveTech in Gurugram</span>
             </h1>
             <p className="mx-auto mt-6 w-full max-w-3xl text-[clamp(1rem,3.8vw,1.75rem)] leading-[1.55] text-white sm:mt-8 sm:leading-[1.65]">
-              <span className="block sm:hidden">Delivering software, infrastructure and</span>
-              <span className="block sm:hidden">security systems that work reliably in</span>
-              <span className="block sm:hidden">real environments</span>
-
-              <span className="hidden sm:block">Delivering software, infrastructure and security</span>
-              <span className="hidden sm:block">systems that work reliably in real environments.</span>
+              Trendwave Technologies — security systems, IT infrastructure and software, delivered from Sector 48, Sohna Road.
             </p>
           </div>
         </div>
@@ -51,6 +45,9 @@ export default function SurveillanceServicesPage() {
 
             <p className="mt-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
               Our approach ensures that technology not only gets implemented but continues to perform consistently over time.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
+              Customers typically include offices, industrial sites, campuses and institutions that need CCTV, vehicle access, networking or software — with installation and AMC from Gurugram (also searched as Gurgaon) across Delhi NCR.
             </p>
           </div>
 

@@ -8,16 +8,6 @@ import { siteConfig } from "@/lib/seo";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
-    e.preventDefault();
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const yOffset = -80; // Offset for sticky navbar
-      const y = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="w-full bg-black text-white pt-6 pb-4 border-t border-gray-800 mt-6">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 mb-2 py-2">
@@ -141,7 +131,13 @@ export default function Footer() {
                 <Link href="/blog" className="hover:text-white transition-colors">Implementation notes</Link>
               </li>
               <li>
-                <Link href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="hover:text-white transition-colors">Contact us</Link>
+                <Link href="/services" className="hover:text-white transition-colors">All services</Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-white transition-colors">All products</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">Contact us</Link>
               </li>
             </ul>
           </div>

@@ -24,10 +24,10 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ fontSize: 28, color: "#93c5fd", marginBottom: 24 }}>
-          Gurugram · Delhi NCR · Pan-India
+          TrendwaveTech · Gurugram · Delhi NCR
         </div>
         <div style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.1 }}>
-          {siteConfig.name}
+          {siteConfig.brand}
         </div>
         <div style={{ fontSize: 32, marginTop: 24, color: "#e2e8f0", maxWidth: 900 }}>
           IT infrastructure, CCTV, ANPR, boom barriers, bollards and access control.

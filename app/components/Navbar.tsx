@@ -28,17 +28,6 @@ export default function Navbar() {
     });
   };
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
-    e.preventDefault();
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const yOffset = -80;
-      const y = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-    closeMobileMenus();
-  };
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Desktop Navigation */}
@@ -78,6 +67,9 @@ export default function Navbar() {
                   </button>
 
                   <div className={`absolute top-full left-0 w-64 bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-200 transform p-4 mt-2 border border-gray-100 ${servicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
+                    <Link href="/services" className="nav-dropdown-item px-4 py-3 rounded-lg">
+                      All services
+                    </Link>
                     <Link href="/services/digital" className="nav-dropdown-item px-4 py-3 rounded-lg">
                       Digital & Software Development
                     </Link>
@@ -119,8 +111,11 @@ export default function Navbar() {
                         {product.navLabel ?? product.name}
                       </Link>
                     ))}
+                    <Link href="/products" className="nav-dropdown-item px-4 py-3 rounded-lg">
+                      All products
+                    </Link>
                     <Link href="/services/surveillance" className="nav-dropdown-item px-4 py-3 rounded-lg">
-                      All security products
+                      Security product details
                     </Link>
                   </div>
                 </div>
@@ -132,7 +127,7 @@ export default function Navbar() {
                 </Link>
               </div>
 
-              <Link href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="btn-primary">
+              <Link href="/contact" className="btn-primary">
                 Contact us
               </Link>
             </div>
@@ -170,8 +165,7 @@ export default function Navbar() {
           {/* Contact Button - Shows only on tablet (md) */}
           <div className="hidden md:flex w-[1.8rem] md:w-auto justify-end">
             <Link
-              href="#contact"
-              onClick={(e) => handleScroll(e, 'contact')}
+              href="/contact"
               className="btn-primary text-sm px-4 py-2 flex"
             >
               Contact us
@@ -279,8 +273,8 @@ export default function Navbar() {
             {/* Contact Button inside dropdown for small mobile screens */}
             <div className="pt-2 w-full flex md:hidden justify-center">
               <Link
-                href="#contact"
-                onClick={(e) => handleScroll(e, 'contact')}
+                href="/contact"
+                onClick={closeMobileMenus}
                 className="btn-primary text-[18px] px-6 py-2.5"
               >
                 Contact us

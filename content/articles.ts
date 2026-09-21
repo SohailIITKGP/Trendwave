@@ -215,6 +215,223 @@ export const articles: ArticleRecord[] = [
       { href: "/products/acms", label: "ACMS" },
     ],
   },
+  {
+    slug: "how-to-choose-cctv-installation-provider",
+    title: "How to Choose a CCTV Installation Provider",
+    description:
+      "What to check before hiring a CCTV installer in Gurugram or Delhi NCR: site survey, recording, cabling, handover and AMC — without brochure language.",
+    datePublished: "2026-09-21",
+    h1: "How to Choose a CCTV Installation Provider",
+    body: [
+      {
+        paragraphs: [
+          "A CCTV installer is not a camera shop. The useful test is whether they will walk the site, say where a camera cannot see, and name who will keep the recorder healthy after handover.",
+        ],
+      },
+      {
+        heading: "Ask for a coverage plan, not a model list",
+        paragraphs: [
+          "Gates, parking, stores and corridors need different mounting and light. If the quote is only SKUs, the layout is still guesswork. Analog and IP can share a campus; the recorder and viewing PCs have to match that mix.",
+        ],
+      },
+      {
+        heading: "Recording, export and AMC",
+        paragraphs: [
+          "Agree how many days of video you keep, who can export an incident, and what happens when a camera goes dark. Trendwave Technologies installs analog and IP CCTV from Gurugram; the installation page describes that work without invented accuracy percentages.",
+        ],
+      },
+    ],
+    relatedPaths: [
+      { href: "/products/cctv-installation", label: "CCTV installation" },
+      { href: "/contact", label: "Contact TrendwaveTech" },
+    ],
+  },
+  {
+    slug: "boom-barrier-selection-guide",
+    title: "Boom Barrier Selection Guide",
+    description:
+      "How to size a boom barrier for parking or a secured gate: lane width, traffic, RFID or ANPR, and when a tyre killer is a different job.",
+    datePublished: "2026-09-21",
+    h1: "Boom Barrier Selection Guide",
+    body: [
+      {
+        paragraphs: [
+          "A boom barrier meters vehicles. It is not an anti-ram product. Choose it for parking, office gates and campus lanes where authorised traffic should pass and everyone else should wait.",
+        ],
+      },
+      {
+        heading: "Lane first, hardware second",
+        paragraphs: [
+          "Count lanes, peak arrivals and how visitors are processed. Then pick boom length and how the arm is opened: button, RFID, ANPR or a mix. Cycle times belong on the data sheet of the unit you actually buy, not on a generic website.",
+        ],
+      },
+      {
+        heading: "When a barrier is not enough",
+        paragraphs: [
+          "If the threat is a vehicle that will ignore the arm, read the tyre killer page. Many Delhi NCR industrial gates use both in one procedure. Trendwave Technologies supplies and installs barriers; we do not claim to manufacture them on this site.",
+        ],
+      },
+    ],
+    relatedPaths: [
+      { href: "/products/boom-barriers", label: "Boom barriers" },
+      { href: "/products/tyre-killers", label: "Tyre killers" },
+    ],
+  },
+  {
+    slug: "hydraulic-bollards-applications",
+    title: "Hydraulic Bollards: Applications and Considerations",
+    description:
+      "Where retractable hydraulic bollards fit — plazas, drop-offs and high-security approaches — and the civil work they need in Gurugram projects.",
+    datePublished: "2026-09-21",
+    h1: "Hydraulic Bollards: Applications and Considerations",
+    body: [
+      {
+        paragraphs: [
+          "Retractable bollards keep a plaza open to people and closed to cars until an authorised vehicle is lowered through. They are a civil job as much as a security job: pits, drainage and road finish decide whether the units last.",
+        ],
+      },
+      {
+        heading: "Typical uses",
+        paragraphs: [
+          "Hotel and commercial drop-offs, campus roads that must close, and high-security approaches. A wide vehicle-only lane may need a road blocker instead. Crash ratings come from the selected product sheet, not from this article.",
+        ],
+      },
+      {
+        heading: "Supply, not a factory claim",
+        paragraphs: [
+          "Trendwave Technologies supplies and installs hydraulic bollards from Gurugram. This website does not state that we manufacture the units.",
+        ],
+      },
+    ],
+    relatedPaths: [
+      { href: "/products/hydraulic-bollards", label: "Hydraulic bollards" },
+      { href: "/products/road-blockers", label: "Road blockers" },
+    ],
+  },
+  {
+    slug: "anpr-systems-for-vehicle-access",
+    title: "ANPR Systems for Vehicle Access Management",
+    description:
+      "How Automatic Number Plate Recognition works at a gate or parking lane, what lighting decides, and how it sits with boom barriers and RFID.",
+    datePublished: "2026-09-21",
+    h1: "ANPR Systems for Vehicle Access Management",
+    body: [
+      {
+        paragraphs: [
+          "ANPR reads a plate at a controlled moment — usually a barrier lane — so a list of authorised vehicles can open the arm or write a log. It is not GPS tracking of cars around a city.",
+        ],
+      },
+      {
+        heading: "Make the plate readable",
+        paragraphs: [
+          "Camera height, angle, speed and light on the plate matter more than software branding. Night work needs lighting designed for that lane. Dirty or covered plates still need a guard or RFID fallback.",
+        ],
+      },
+      {
+        heading: "Lists and visitors",
+        paragraphs: [
+          "Staff lists are straightforward. Visitors need a reception process unless the site accepts an open log. Trendwave Technologies installs ANPR as part of vehicle access in Delhi NCR; see the ANPR and vehicle monitoring pages for scope.",
+        ],
+      },
+    ],
+    relatedPaths: [
+      { href: "/products/anpr", label: "ANPR systems" },
+      { href: "/products/vehicle-monitoring-system", label: "Vehicle monitoring" },
+    ],
+  },
+  {
+    slug: "access-control-system-implementation",
+    title: "Access Control System Implementation",
+    description:
+      "How to implement ACMS: door schedules, credentials, logs and how readers connect to flap barriers or vehicle gates.",
+    datePublished: "2026-09-21",
+    h1: "Access Control System Implementation",
+    body: [
+      {
+        paragraphs: [
+          "ACMS is the list of who may open a door, turnstile or gate, plus the log of the attempt. Implementation starts with a door schedule, not with a reader catalogue.",
+        ],
+      },
+      {
+        heading: "Credentials and fallbacks",
+        paragraphs: [
+          "Cards, RFID, PIN and biometrics are inputs. Decide which doors need a person-bound credential and which can stay on a card. Enrolment, visitors and lost cards need a named owner on the client side.",
+        ],
+      },
+      {
+        heading: "What this is not",
+        paragraphs: [
+          "It is not a physical key-management cabinet. Trendwave Technologies does not list that product today. Vehicle gates can share the same permission store when the barrier, ANPR or RFID is designed into the same project.",
+        ],
+      },
+    ],
+    relatedPaths: [
+      { href: "/products/acms", label: "ACMS" },
+      { href: "/products/rfid-access", label: "RFID access" },
+    ],
+  },
+  {
+    slug: "it-infrastructure-security-checklist",
+    title: "IT Infrastructure Security Checklist",
+    description:
+      "A practical checklist for office and campus networks: cabling, firewalls, Wi-Fi, backups and AMC versus break-fix support.",
+    datePublished: "2026-09-21",
+    h1: "IT Infrastructure Security Checklist",
+    body: [
+      {
+        paragraphs: [
+          "Network security is mostly boring hygiene: who is on the Wi-Fi, whether the firewall rules still match the office, and whether last month’s backup actually restored.",
+        ],
+      },
+      {
+        heading: "Physical and logical layers",
+        paragraphs: [
+          "Structured cabling and rack hygiene sit under the same programme as firewalls and wireless. A clean cabinet does not replace access control on the server room door, but a messy one makes every outage slower.",
+        ],
+      },
+      {
+        heading: "Support after install",
+        paragraphs: [
+          "Break-fix is a call after failure. IT AMC is planned checks. Trendwave Technologies lists both installation and IT AMC from Gurugram; the IT infrastructure hub is the service page for that work.",
+        ],
+      },
+    ],
+    relatedPaths: [
+      { href: "/services/it-infra", label: "IT infrastructure and support" },
+      { href: "/blog/it-amc-vs-break-fix-support", label: "IT AMC vs break-fix" },
+    ],
+  },
+  {
+    slug: "security-system-maintenance-guide",
+    title: "Security System Maintenance Guide",
+    description:
+      "What AMC should cover for CCTV, barriers, ANPR and access control so a Gurugram or Delhi NCR site does not discover a dead camera during an incident.",
+    datePublished: "2026-09-21",
+    h1: "Security System Maintenance Guide",
+    body: [
+      {
+        paragraphs: [
+          "Security hardware fails quietly: dirty camera domes, a barrier that sticks, an ANPR log that stopped writing. Maintenance is how you notice before an incident.",
+        ],
+      },
+      {
+        heading: "What to put on the visit list",
+        paragraphs: [
+          "Camera cleanliness and recorder health, barrier sensors and arms, reader failures, and a test that footage or event logs still export. Exact intervals belong in the AMC document, not as a universal calendar on a website.",
+        ],
+      },
+      {
+        heading: "One vendor, several layers",
+        paragraphs: [
+          "Sites that bought CCTV, a boom and ACMS separately often have three call-out numbers. Trendwave Technologies offers surveillance AMC alongside installation from Gurugram so those layers can be checked as one site.",
+        ],
+      },
+    ],
+    relatedPaths: [
+      { href: "/services/surveillance", label: "Surveillance services" },
+      { href: "/contact", label: "Request a discussion" },
+    ],
+  },
 ];
 
 const articleBySlug = new Map(articles.map((article) => [article.slug, article]));

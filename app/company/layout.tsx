@@ -1,10 +1,11 @@
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "About us",
+  title: "TrendwaveTech Gurugram | Security Systems and IT",
   description:
-    "Trendwave Technologies is a Gurugram-based IT and security solutions company delivering software, infrastructure and surveillance across Delhi NCR and India.",
+    "Trendwave Technologies (TrendwaveTech) is based at Welldone Tech Park, Sector 48, Sohna Road, Gurugram, Haryana, delivering IT and security systems across Delhi NCR.",
   path: "/company",
+  absoluteTitle: true,
 });
 
 export default function CompanyLayout({

@@ -2,12 +2,13 @@ import Hero from "./components/Hero";
 import AboutUs from "./components/AboutUs";
 import Services from "./components/Services";
 import WhyUs from "./components/WhyUs";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, siteConfig } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  description:
-    "Trendwave Technologies provides IT support, CCTV, ANPR, boom barriers, bollards, ACMS and software from Gurugram across Delhi NCR and India.",
+  title: siteConfig.defaultTitle,
+  description: siteConfig.defaultDescription,
   path: "/",
+  absoluteTitle: true,
 });
 
 export default function Home() {

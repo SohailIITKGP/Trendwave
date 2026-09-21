@@ -19,6 +19,36 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      { source: "/about", destination: "/company", permanent: true },
+      {
+        source: "/services/security-systems",
+        destination: "/services/surveillance",
+        permanent: true,
+      },
+      {
+        source: "/services/it-infrastructure",
+        destination: "/services/it-infra",
+        permanent: true,
+      },
+      {
+        source: "/services/cctv-installation",
+        destination: "/products/cctv-installation",
+        permanent: true,
+      },
+      {
+        source: "/services/access-control",
+        destination: "/products/acms",
+        permanent: true,
+      },
+      {
+        source: "/services/gate-automation",
+        destination: "/products",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
