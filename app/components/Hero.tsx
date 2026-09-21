@@ -94,6 +94,9 @@ export default function Header() {
           >
             Get in Touch
           </button>
+          <p className="mt-5 text-sm text-[#3f4650] sm:text-base">
+            Based in Gurugram. Serving Delhi NCR and sites across India.
+          </p>
         </div>
       </div>
 

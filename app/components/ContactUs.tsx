@@ -42,6 +42,10 @@ export default function ContactUs() {
       const data = await response.json();
 
       if (response.ok) {
+        if (typeof window !== "undefined") {
+          const dataLayer = (window as Window & { dataLayer?: Record<string, unknown>[] }).dataLayer;
+          dataLayer?.push({ event: "contact_form_submit" });
+        }
         toast.success("Thank you! We'll get back to you soon.", {
           position: "top-right",
           autoClose: 4000,
@@ -141,6 +145,7 @@ export default function ContactUs() {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
+                  maxLength={120}
                   className="h-11 w-full border-b border-[#b8bfcc] bg-transparent px-0 text-[17px] text-black placeholder:text-[#5b7296] focus:border-[#7c8da8] focus:outline-none transition-colors"
                 />
               </div>
@@ -157,6 +162,7 @@ export default function ContactUs() {
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   required
+                  maxLength={20}
                   className="h-11 w-full border-b border-[#b8bfcc] bg-transparent px-0 text-[17px] text-black placeholder:text-[#5b7296] focus:border-[#7c8da8] focus:outline-none transition-colors"
                 />
               </div>
@@ -173,6 +179,7 @@ export default function ContactUs() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  maxLength={254}
                   className="h-11 w-full border-b border-[#b8bfcc] bg-transparent px-0 text-[17px] text-black placeholder:text-[#5b7296] focus:border-[#7c8da8] focus:outline-none transition-colors"
                 />
               </div>
@@ -189,6 +196,8 @@ export default function ContactUs() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  maxLength={4000}
+                  minLength={10}
                   className="w-full resize-none border-b border-[#b8bfcc] bg-transparent px-0 py-2 text-[17px] text-black placeholder:text-[#5b7296] focus:border-[#7c8da8] focus:outline-none transition-colors"
                 />
               </div>

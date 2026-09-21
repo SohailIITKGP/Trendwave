@@ -46,7 +46,7 @@ export default function SurveillanceServicesPage() {
             </h2>
 
             <p className="mt-6 text-lg leading-relaxed text-slate-700 sm:text-xl">
-              In today&apos;s market, many technology solutions look strong in planning but fail during real implementation. At TrendWaveTech, we focus on closing this gap by delivering systems that are practical to deploy, easy to manage and reliable in everyday operations.
+              In today&apos;s market, many technology solutions look strong in planning but fail during real implementation. At Trendwave Technologies, we focus on closing this gap by delivering systems that are practical to deploy, easy to manage and reliable in everyday operations. Our office is in Gurugram, and we work across Delhi NCR with project deployment elsewhere in India.
             </p>
 
             <p className="mt-5 text-lg leading-relaxed text-slate-700 sm:text-xl">

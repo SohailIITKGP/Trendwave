@@ -1,3 +1,12 @@
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata = buildPageMetadata({
+  title: "Terms and Conditions",
+  description:
+    "Terms and conditions for using the Trendwave Technologies website and engaging TrendWave Technologies Pvt Ltd for IT and security services.",
+  path: "/terms-conditions",
+});
+
 export default function TermsAndConditionsPage() {
   return (
     <div className="w-full bg-white pt-24">
@@ -29,7 +38,7 @@ export default function TermsAndConditionsPage() {
                       >
                         www.trendwavetech.com
                       </a>{" "}
-                      (&quot;Website&quot;) and the services provided by Trendwave Tech (&quot;Company&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;).
+                      (&quot;Website&quot;) and the services provided by Trendwave Technologies (&quot;Company&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;).
                     </p>
                     <p>
                       By accessing, browsing, or using this Website, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you are advised to discontinue use of the Website immediately.
@@ -44,7 +53,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                   <div className="space-y-4 text-gray-700 leading-relaxed">
                     <p>
-                      Trendwave Tech provides technology solutions including, but not limited to:
+                      Trendwave Technologies provides technology solutions including, but not limited to:
                     </p>
                     <ul className="list-disc list-inside space-y-3 ml-2">
                       <li>Software development and digital platforms</li>
@@ -74,7 +83,7 @@ export default function TermsAndConditionsPage() {
                       <li>Misuse any information, content, or contact details available on the Website</li>
                     </ul>
                     <p>
-                      Trendwave Tech reserves the right to restrict or terminate access in case of misuse.
+                      Trendwave Technologies reserves the right to restrict or terminate access in case of misuse.
                     </p>
                   </div>
                 </section>
@@ -86,10 +95,10 @@ export default function TermsAndConditionsPage() {
                   </h2>
                   <div className="space-y-4 text-gray-700 leading-relaxed">
                     <p>
-                      All content on this Website, including but not limited to text, graphics, logos, icons, images, design elements, and software, is the property of Trendwave Tech or its licensors and is protected under applicable intellectual property laws.
+                      All content on this Website, including but not limited to text, graphics, logos, icons, images, design elements, and software, is the property of Trendwave Technologies or its licensors and is protected under applicable intellectual property laws.
                     </p>
                     <p>
-                      No content may be copied, reproduced, modified, distributed, or used for commercial purposes without prior written consent from Trendwave Tech.
+                      No content may be copied, reproduced, modified, distributed, or used for commercial purposes without prior written consent from Trendwave Technologies.
                     </p>
                   </div>
                 </section>
@@ -101,7 +110,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                   <div className="space-y-4 text-gray-700 leading-relaxed">
                     <p>
-                      Any engagement between Trendwave Tech and a client shall be governed by a formal agreement, proposal, or work order. These documents will clearly define:
+                      Any engagement between Trendwave Technologies and a client shall be governed by a formal agreement, proposal, or work order. These documents will clearly define:
                     </p>
                     <ul className="list-disc list-inside space-y-3 ml-2">
                       <li>Scope of work and deliverables</li>
@@ -125,7 +134,7 @@ export default function TermsAndConditionsPage() {
                       All fees and payment schedules shall be outlined in the respective agreement or proposal. Clients are required to adhere to agreed payment timelines.
                     </p>
                     <p className="font-semibold">
-                      Trendwave Tech reserves the right to:
+                      Trendwave Technologies reserves the right to:
                     </p>
                     <ul className="list-disc list-inside space-y-3 ml-2">
                       <li>Suspend or delay services in case of non-payment</li>
@@ -142,7 +151,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                   <div className="space-y-4 text-gray-700 leading-relaxed">
                     <p>
-                      Projects may involve third-party tools, hardware, software, or services. While Trendwave Tech ensures proper integration and implementation, it shall not be liable for:
+                      Projects may involve third-party tools, hardware, software, or services. While Trendwave Technologies ensures proper integration and implementation, it shall not be liable for:
                     </p>
                     <ul className="list-disc list-inside space-y-3 ml-2">
                       <li>Performance limitations of third-party products</li>
@@ -162,7 +171,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                   <div className="space-y-4 text-gray-700 leading-relaxed">
                     <p>
-                      To the fullest extent permitted by law, Trendwave Tech shall not be liable for any indirect, incidental, special, or consequential damages, including but not limited to:
+                      To the fullest extent permitted by law, Trendwave Technologies shall not be liable for any indirect, incidental, special, or consequential damages, including but not limited to:
                     </p>
                     <ul className="list-disc list-inside space-y-3 ml-2">
                       <li>Loss of data or information</li>
@@ -214,7 +223,7 @@ export default function TermsAndConditionsPage() {
                   </h2>
                   <div className="space-y-4 text-gray-700 leading-relaxed">
                     <p>
-                      Trendwave Tech reserves the right to update or modify these Terms at any time without prior notice. Updated Terms will be effective upon publication on the Website.
+                      Trendwave Technologies reserves the right to update or modify these Terms at any time without prior notice. Updated Terms will be effective upon publication on the Website.
                     </p>
                   </div>
                 </section>
@@ -258,7 +267,7 @@ export default function TermsAndConditionsPage() {
                     Acceptance of Terms
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    By using this Website and engaging with Trendwave Tech for services, you affirm that you have read and understood these Terms & Conditions and agree to be legally bound by them. If you have any questions or concerns, please contact us before proceeding.
+                    By using this Website and engaging with Trendwave Technologies for services, you affirm that you have read and understood these Terms & Conditions and agree to be legally bound by them. If you have any questions or concerns, please contact us before proceeding.
                   </p>
                 </section>
         </main>

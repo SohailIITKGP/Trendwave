@@ -1,3 +1,12 @@
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata = buildPageMetadata({
+  title: "Privacy Policy",
+  description:
+    "Privacy policy for Trendwave Technologies covering how we collect, use and protect information submitted through trendwavetech.com.",
+  path: "/privacy-policy",
+});
+
 export default function PrivacyPolicyPage() {
   return (
     <div className="w-full bg-white pt-24">
@@ -18,7 +27,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Trendwave Tech is committed to protecting the privacy and confidentiality of users and clients.
+                Trendwave Technologies is committed to protecting the privacy and confidentiality of users and clients.
                 This Privacy Policy explains how we collect, use, store, and protect personal information shared
                 through our website and during service engagements.
               </p>
@@ -82,7 +91,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Trendwave Tech does not sell, rent, or trade personal information. Information may be shared only
+                Trendwave Technologies does not sell, rent, or trade personal information. Information may be shared only
                 under the following circumstances:
               </p>
               <ul className="list-disc list-inside space-y-3 ml-2">
@@ -132,7 +141,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                The website may contain links to third-party websites. Trendwave Tech is not responsible for the
+                The website may contain links to third-party websites. Trendwave Technologies is not responsible for the
                 privacy practices, policies, or content of such external websites.
               </p>
               <p>
@@ -174,7 +183,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Trendwave Tech reserves the right to update this Privacy Policy at any time. Changes will be
+                Trendwave Technologies reserves the right to update this Privacy Policy at any time. Changes will be
                 reflected on this page, and continued use of the website constitutes acceptance of the updated
                 Policy.
               </p>

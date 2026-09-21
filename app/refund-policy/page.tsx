@@ -1,3 +1,12 @@
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata = buildPageMetadata({
+  title: "Refund and Cancellation Policy",
+  description:
+    "Refund and cancellation terms for services provided by Trendwave Technologies / TrendWave Technologies Pvt Ltd.",
+  path: "/refund-policy",
+});
+
 export default function RefundPolicyPage() {
   return (
     <div className="w-full bg-white pt-24">
@@ -31,7 +40,7 @@ export default function RefundPolicyPage() {
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Trendwave Tech provides customized technology services including software development, IT
+                Trendwave Technologies provides customized technology services including software development, IT
                 infrastructure deployment, networking, and surveillance or security system implementation.
               </p>
               <p>
@@ -192,7 +201,7 @@ export default function RefundPolicyPage() {
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Trendwave Tech reserves the right to modify or update this Refund &amp; Cancellation Policy at any
+                Trendwave Technologies reserves the right to modify or update this Refund &amp; Cancellation Policy at any
                 time. Updates will be effective upon publication on the website.
               </p>
             </div>

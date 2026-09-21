@@ -1,3 +1,4 @@
+import { buildPageMetadata } from "@/lib/seo";
 import {
   AppWindow,
   ArrowLeftRight,
@@ -10,6 +11,13 @@ import {
   Workflow,
   type LucideIcon,
 } from "lucide-react";
+
+export const metadata = buildPageMetadata({
+  title: "Custom Software, Websites and Mobile Apps",
+  description:
+    "Trendwave Technologies builds custom applications, websites, mobile apps, workflow automation and martech for organisations in Delhi NCR and India.",
+  path: "/services/digital",
+});
 
 interface ServiceCard {
   title: string;

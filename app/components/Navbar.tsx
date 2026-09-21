@@ -2,15 +2,19 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { navProducts } from "@/content/products";
+import { siteConfig } from "@/lib/seo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const mobileMenuLinkClass = "text-[#1a202c] text-[18px] hover:text-[var(--primary-accent-color)] transition-colors";
 
   const closeMobileMenus = () => {
     setOpen(false);
     setServicesOpen(false);
+    setProductsOpen(false);
   };
 
   const toggleMobileMenu = () => {
@@ -18,6 +22,7 @@ export default function Navbar() {
       const next = !prev;
       if (!next) {
         setServicesOpen(false);
+        setProductsOpen(false);
       }
       return next;
     });
@@ -43,7 +48,7 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex items-center flex-shrink-0 -ml-2">
               <Link href="/" className="flex items-center gap-3">
-                <img src="/Logo1_converted.webp" alt="TrendWave Logo" className="h-16 w-auto object-contain" />
+                <img src="/Logo1_converted.webp" alt="Trendwave Technologies logo" className="h-16 w-auto object-contain" />
               </Link>
             </div>
 
@@ -85,14 +90,45 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                <Link href="/services/surveillance" className="nav-link">
-                  Products
-                </Link>
+                <div
+                  className="relative"
+                  onMouseEnter={() => setProductsOpen(true)}
+                  onMouseLeave={() => setProductsOpen(false)}
+                >
+                  <button
+                    onClick={() => setProductsOpen(!productsOpen)}
+                    className="flex items-center gap-1 nav-link"
+                  >
+                    Products
+                    <svg
+                      className={`w-3 h-3 ml-1 text-black transition-transform duration-200 ${productsOpen ? "rotate-180 text-blue-600" : "hover:text-blue-600"}`}
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M5 6L0.669873 0.75L9.33013 0.75L5 6Z" fill="currentColor" />
+                    </svg>
+                  </button>
+                  <div className={`absolute top-full left-0 w-72 bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-200 transform p-4 mt-2 border border-gray-100 ${productsOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-2"}`}>
+                    {navProducts.map((product) => (
+                      <Link
+                        key={product.slug}
+                        href={`/products/${product.slug}`}
+                        className="nav-dropdown-item px-4 py-3 rounded-lg"
+                      >
+                        {product.navLabel ?? product.name}
+                      </Link>
+                    ))}
+                    <Link href="/services/surveillance" className="nav-dropdown-item px-4 py-3 rounded-lg">
+                      All security products
+                    </Link>
+                  </div>
+                </div>
                 <Link href="/company" className="nav-link">
                   Company
                 </Link>
-                <Link href="tel:+919821801122" className="nav-link">
-                  +91-9821801122
+                <Link href={`tel:${siteConfig.phones.mobileTel}`} className="nav-link">
+                  {siteConfig.phones.mobileDisplay}
                 </Link>
               </div>
 
@@ -127,7 +163,7 @@ export default function Navbar() {
           {/* Centered Logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2 pl-4">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/Logo1_converted.webp" alt="TrendWave Logo" className="h-13 w-auto object-contain" />
+              <img src="/Logo1_converted.webp" alt="Trendwave Technologies logo" className="h-13 w-auto object-contain" />
             </Link>
           </div>
 
@@ -190,13 +226,41 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link
-              href="/services/surveillance"
-              onClick={closeMobileMenus}
-              className={mobileMenuLinkClass}
-            >
-              Products
-            </Link>
+            <div className="w-full flex flex-col items-center">
+              <button
+                onClick={() => setProductsOpen(!productsOpen)}
+                className={`flex items-center justify-center gap-1.5 ${mobileMenuLinkClass} focus:outline-none`}
+              >
+                Products
+                <svg
+                  className={`w-3 h-3 transition-transform duration-200 ${productsOpen ? "rotate-180" : ""}`}
+                  viewBox="0 0 10 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M5 6L0.669873 0.75L9.33013 0.75L5 6Z" fill="currentColor" />
+                </svg>
+              </button>
+              <div className={`flex-col items-center mt-6 space-y-6 w-full ${productsOpen ? "flex" : "hidden"}`}>
+                {navProducts.map((product) => (
+                  <Link
+                    key={product.slug}
+                    href={`/products/${product.slug}`}
+                    onClick={closeMobileMenus}
+                    className={mobileMenuLinkClass}
+                  >
+                    {product.navLabel ?? product.name}
+                  </Link>
+                ))}
+                <Link
+                  href="/services/surveillance"
+                  onClick={closeMobileMenus}
+                  className={mobileMenuLinkClass}
+                >
+                  All security products
+                </Link>
+              </div>
+            </div>
             <Link
               href="/company"
               onClick={closeMobileMenus}
@@ -205,11 +269,11 @@ export default function Navbar() {
               Company
             </Link>
             <Link
-              href="/terms-conditions"
+              href={`tel:${siteConfig.phones.mobileTel}`}
               onClick={closeMobileMenus}
               className={mobileMenuLinkClass}
             >
-              +91-9821801122
+              {siteConfig.phones.mobileDisplay}
             </Link>
 
             {/* Contact Button inside dropdown for small mobile screens */}
