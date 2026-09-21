@@ -2,20 +2,20 @@ import Image from "next/image";
 import { memo } from "react";
 
 const clients = [
-  "Badge_of_the_Indian_Air_Force.webp",
-  "Emblem_of_Haryana.webp",
-  "Expenditure.webp",
-  "GC-LOGO.webp",
-  "Himachal_Pradesh_seal.webp",
-  "JKC_Final_logo.webp",
-  "Khelo_India.webp",
-  "Ministry_of_cooperation.png",
-  "Ministry_of_Finance_India.webp",
-  "Ministry_of_Youth_Affairs_and_Sports.webp",
-  "NCOL_logo_TW.webp",
-  "SAI_logo.webp",
-  "Secure_Life_Logo.webp",
-  "Yogirty_Media.webp",
+  { file: "Badge_of_the_Indian_Air_Force.webp", alt: "Indian Air Force" },
+  { file: "Emblem_of_Haryana.webp", alt: "Government of Haryana" },
+  { file: "Expenditure.webp", alt: "Department of Expenditure" },
+  { file: "GC-LOGO.webp", alt: "Client organisation logo" },
+  { file: "Himachal_Pradesh_seal.webp", alt: "Himachal Pradesh" },
+  { file: "JKC_Final_logo.webp", alt: "Client organisation logo" },
+  { file: "Khelo_India.webp", alt: "Khelo India" },
+  { file: "Ministry_of_cooperation.png", alt: "Ministry of Cooperation" },
+  { file: "Ministry_of_Finance_India.webp", alt: "Ministry of Finance" },
+  { file: "Ministry_of_Youth_Affairs_and_Sports.webp", alt: "Ministry of Youth Affairs and Sports" },
+  { file: "NCOL_logo_TW.webp", alt: "Client organisation logo" },
+  { file: "SAI_logo.webp", alt: "Sports Authority of India" },
+  { file: "Secure_Life_Logo.webp", alt: "Client organisation logo" },
+  { file: "Yogirty_Media.webp", alt: "Client organisation logo" },
 ];
 
 function Clinets() {
@@ -44,11 +44,10 @@ function Clinets() {
               {marqueeItems.map((client, index) => (
                 <div key={`c1-${index}`} className="flex-none px-6 sm:px-10 flex items-center justify-center">
                   <Image
-                    src={`/clients/${client}`}
-                    alt={`Client logo ${index + 1}`}
+                    src={`/clients/${client.file}`}
+                    alt={client.alt}
                     width={200}
                     height={100}
-                    priority={true}
                     className="h-18 w-auto rounded-md object-contain"
                   />
                 </div>
@@ -59,11 +58,10 @@ function Clinets() {
               {marqueeItems.map((client, index) => (
                 <div key={`c2-${index}`} className="flex-none px-6 sm:px-10 flex items-center justify-center">
                   <Image
-                    src={`/clients/${client}`}
+                    src={`/clients/${client.file}`}
                     alt=""
                     width={200}
                     height={100}
-                    priority={true}
                     className="h-18 w-auto rounded-md object-contain"
                   />
                 </div>

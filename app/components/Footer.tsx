@@ -1,25 +1,12 @@
 "use client";
 
-import Link from 'next/link';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { products } from "@/content/products";
+import { siteConfig } from "@/lib/seo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const productItems = [
-    'CCTV Systems',
-    'Boom Barriers',
-    'Spike Barriers',
-    'Tyre Killers',
-    'Hydraulic Bollards',
-    'Road Blockers',
-    'Flap Barriers',
-    'Automatic Swing Gates',
-    'Automatic Sliding Gates',
-    'ANPR Systems',
-    'Access Control & Monitoring Systems (ACMS)',
-    'RFID Access Systems',
-    'Biometric & Face Recognition Devices',
-  ];
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
     e.preventDefault();
@@ -42,10 +29,10 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="text-[18px] font-semibold text-white mb-2">Our Products</h4>
             <ul className="flex flex-col gap-2 text-[14px] text-[#8c96af]">
-              {productItems.map((item) => (
-                <li key={item}>
-                  <Link href="/services/surveillance" className="hover:text-white transition-colors">
-                    {item}
+              {products.map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/products/${item.slug}`} className="hover:text-white transition-colors">
+                    {item.footerLabel}
                   </Link>
                 </li>
               ))}
@@ -151,6 +138,9 @@ export default function Footer() {
                 <Link href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link>
               </li>
               <li>
+                <Link href="/blog" className="hover:text-white transition-colors">Implementation notes</Link>
+              </li>
+              <li>
                 <Link href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="hover:text-white transition-colors">Contact us</Link>
               </li>
             </ul>
@@ -162,22 +152,25 @@ export default function Footer() {
             <div className="flex flex-col gap-3 text-[14px] text-[#8c96af]">
               <p className="flex items-start gap-2.5">
                 <Phone size={16} className="mt-0.5 shrink-0 text-current" aria-hidden="true" />
-                <span>0124-4580307</span>
+                <a href={`tel:${siteConfig.phones.landlineTel}`} className="hover:text-white">
+                  {siteConfig.phones.landlineDisplay}
+                </a>
               </p>
               <p className="flex items-start gap-2.5">
                 <Phone size={16} className="mt-0.5 shrink-0 text-current" aria-hidden="true" />
-                <span>+91-9821801122</span>
+                <a href={`tel:${siteConfig.phones.mobileTel}`} className="hover:text-white">
+                  {siteConfig.phones.mobileDisplay}
+                </a>
               </p>
               <p className="flex items-start gap-2.5 break-all sm:break-normal">
                 <Mail size={16} className="mt-0.5 shrink-0 text-current" aria-hidden="true" />
-                <span>office@trendwavetech.com</span>
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-white">
+                  {siteConfig.email}
+                </a>
               </p>
               <p className="flex items-start gap-2.5 leading-relaxed">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-current" aria-hidden="true" />
-                <span>
-                  304, Welldone Tech Park, Sector 48,
-                  Sohna Road, Gurugram, Haryana, 122018
-                </span>
+                <span>{siteConfig.address.display}</span>
               </p>
             </div>
           </div>
@@ -190,7 +183,7 @@ export default function Footer() {
         {/* Bottom Section - Copyright & Legal */}
         <div className="flex justify-center items-center w-full">
           <p className="text-[16px] text-white text-center">
-            &copy; {currentYear} TrendWaveTech. All rights reserved.
+            &copy; {currentYear} {siteConfig.legalName}. All rights reserved.
           </p>
         </div>
 

@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { siteConfig } from "@/lib/seo";
 
 export default function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
 
   // WhatsApp number and pre-filled message encoded for URL
-  const phoneNumber = "+919821113116";
+  const phoneNumber = siteConfig.phones.whatsappTel;
   const message = encodeURIComponent("Hi I came across your website, I want to connect with you regarding your services.");
   const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${message}`;
 
@@ -17,6 +18,8 @@ export default function WhatsAppButton() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Chat with Trendwave Technologies on WhatsApp"
+        data-analytics="whatsapp_click"
         className="flex items-center justify-center gap-2 bg-[#25D366] text-white p-3 rounded-full shadow-[0_4px_14px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.6)] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer overflow-hidden group h-[56px] min-w-[56px]"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

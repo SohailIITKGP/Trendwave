@@ -40,18 +40,17 @@ export default function OurPartners() {
         </h2>
 
         <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3.5">
-          {partners.map((logo, index) => (
+          {partners.map((logo) => (
             <div
               key={logo}
               className="relative flex h-16 w-[calc(33.333%-0.42rem)] items-center justify-center overflow-hidden rounded-sm border border-[#d8dde6] bg-white p-2 shadow-[0_1px_2px_rgba(15,23,42,0.08)] sm:h-18 sm:w-[calc(25%-0.66rem)] sm:p-2.5 md:h-20 md:w-[calc(20%-0.7rem)] md:p-3 lg:w-[calc(16.666%-0.73rem)]"
             >
               <Image
                 src={`/Partners/${logo}`}
-                alt={`Partner logo ${index + 1}`}
+                alt=""
                 fill
                 className="object-contain"
                 sizes="(max-width: 640px) 30vw, (max-width: 768px) 23vw, (max-width: 1024px) 18vw, (max-width: 1280px) 15vw, 12vw"
-                priority={index < 10}
               />
             </div>
           ))}

@@ -11,7 +11,7 @@ export default function AboutUs() {
             <div className="relative w-full aspect-4/3 rounded-3xl overflow-hidden">
               <Image
                 src="/About US.webp"
-                alt="Trendwave Team at work"
+                alt="Trendwave Technologies team at work"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -34,7 +34,7 @@ export default function AboutUs() {
                   </div>
                   <div className="flex flex-col">
                     <p className="text-left w-full">
-                      At Trendwave, we combine deep technical expertise with real execution capability to deliver technology solutions that solve operational challenges, improve efficiency, and strengthen digital security.
+                      At Trendwave Technologies, we combine deep technical expertise with real execution capability to deliver technology solutions that solve operational challenges, improve efficiency, and strengthen digital security.
                     </p>
                   </div>
                 </div>

@@ -87,18 +87,94 @@ async function sendMailWithRetry(
   }
 }
 
+function getClientIp(request: NextRequest) {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    return forwarded.split(",")[0]?.trim() || "unknown";
+  }
+  return request.headers.get("x-real-ip") || "unknown";
+}
+
+const rateLimitWindowMs = 15 * 60 * 1000;
+const rateLimitMax = 5;
+const rateLimitHits = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const current = rateLimitHits.get(ip);
+  if (!current || now > current.resetAt) {
+    rateLimitHits.set(ip, { count: 1, resetAt: now + rateLimitWindowMs });
+    return false;
+  }
+  current.count += 1;
+  return current.count > rateLimitMax;
+}
+
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 254;
+}
+
+function isValidPhone(value: string) {
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 8 && digits.length <= 15;
+}
+
+function isAllowedOrigin(request: NextRequest) {
+  const origin = request.headers.get("origin");
+  if (!origin) {
+    return true;
+  }
+  const allowed = new Set([
+    "https://www.trendwavetech.com",
+    "https://trendwavetech.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+  ]);
+  return allowed.has(origin);
+}
+
+export async function GET() {
+  return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, contactNo, message } = await request.json();
+    if (!isAllowedOrigin(request)) {
+      return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
+    }
+
+    if (isRateLimited(getClientIp(request))) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
+    let payload: { name?: unknown; email?: unknown; contactNo?: unknown; message?: unknown };
+    try {
+      payload = await request.json();
+    } catch {
+      return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    }
+
+    const { name, email, contactNo, message } = payload;
 
     const trimmedName = cleanInput(name);
     const trimmedEmail = cleanInput(email);
     const trimmedContactNo = cleanInput(contactNo);
     const trimmedMessage = typeof message === 'string' ? message.trim() : '';
 
-    if (!trimmedName || !trimmedEmail || !trimmedContactNo || !trimmedMessage) {
+    if (
+      trimmedName.length < 2 ||
+      trimmedName.length > 120 ||
+      trimmedContactNo.length > 20 ||
+      trimmedMessage.length < 10 ||
+      trimmedMessage.length > 4000 ||
+      !isValidEmail(trimmedEmail) ||
+      !isValidPhone(trimmedContactNo)
+    ) {
       return NextResponse.json(
-        { error: 'All fields are required.' },
+        { error: "Please provide a valid name, email, phone number and message." },
         { status: 400 }
       );
     }
@@ -121,7 +197,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const fromAddress = `"Trendwave" <${emailUser}>`;
+    const fromAddress = `"Trendwave Technologies" <${emailUser}>`;
     const replyToAddress = officeEmail || emailUser;
     const messageIdDomain = getMessageIdDomain(officeEmail, emailUser);
     const userMessageId = createMessageId(messageIdDomain, 'contact-confirmation');
@@ -182,11 +258,11 @@ export async function POST(request: NextRequest) {
       from: fromAddress,
       to: trimmedEmail,
       replyTo: replyToAddress,
-      subject: 'Thanks for contacting Trendwave',
+      subject: 'Thanks for contacting Trendwave Technologies',
       text: buildTextBlock([
         `Hi ${trimmedName},`,
         '',
-        'Thanks for contacting Trendwave. We have received your message and will review it shortly.',
+        'Thanks for contacting Trendwave Technologies. We have received your message and will review it shortly.',
         '',
         'Your submission:',
         `Name: ${trimmedName}`,
@@ -194,18 +270,18 @@ export async function POST(request: NextRequest) {
         `Message: ${trimmedMessage}`,
         '',
         'Best regards,',
-        'Trendwave',
+        'Trendwave Technologies',
         '',
         `This message was sent to ${trimmedEmail} after a form submission on the Trendwave website.`,
       ]),
       html: `
         <div style="font-family: Arial, Helvetica, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; color: #1f2937; line-height: 1.6;">
           <div style="padding-bottom: 16px; border-bottom: 1px solid #e5e7eb; margin-bottom: 20px;">
-            <p style="margin: 0; font-size: 20px; font-weight: 600; color: #111827;">Trendwave</p>
+            <p style="margin: 0; font-size: 20px; font-weight: 600; color: #111827;">Trendwave Technologies</p>
           </div>
 
           <p style="margin: 0 0 16px 0;">Hi ${escapedName},</p>
-          <p style="margin: 0 0 16px 0;">Thanks for contacting Trendwave. We have received your message and will review it shortly.</p>
+          <p style="margin: 0 0 16px 0;">Thanks for contacting Trendwave Technologies. We have received your message and will review it shortly.</p>
 
           <div style="margin: 20px 0; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb;">
             <p style="margin: 0 0 8px 0;"><strong>Name:</strong> ${escapedName}</p>
@@ -215,7 +291,7 @@ export async function POST(request: NextRequest) {
           </div>
 
           <p style="margin: 0 0 8px 0;">Best regards,</p>
-          <p style="margin: 0;">Trendwave</p>
+          <p style="margin: 0;">Trendwave Technologies</p>
           <p style="margin: 20px 0 0 0; font-size: 12px; color: #6b7280;">This message was sent to ${escapedEmail} after a form submission on the Trendwave website.</p>
         </div>
       `,
@@ -286,9 +362,8 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('❌ Error in contact API:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Failed to send email. Please try again later.';
     return NextResponse.json(
-      { error: errorMessage },
+      { error: "Failed to send email. Please try again later." },
       { status: 500 }
     );
   }
