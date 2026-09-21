@@ -23,12 +23,12 @@ export default function Header() {
             <h1 className="text-[clamp(1.9rem,8.4vw,5.4rem)] font-extrabold leading-[1.02] tracking-tight text-black sm:leading-[0.98]">
               <span className="block">TrendwaveTech</span>
               <span className="mt-2 block text-[clamp(1.05rem,3.4vw,2rem)] font-semibold leading-snug tracking-tight text-[#1e293b]">
-                Security systems, IT infrastructure and technology solutions
+                Also known as Trendwave and Trendwave Tech
               </span>
             </h1>
 
             <p className="mt-6 w-full max-w-3xl px-0 text-[0.92rem] leading-[1.45] text-[#3f4650] sm:mt-8 sm:text-[clamp(1.02rem,2.15vw,1.35rem)] sm:leading-snug">
-              Trendwave Technologies, based in Gurugram (Gurgaon), Haryana — CCTV, access control, boom barriers, bollards, ANPR and IT support for Delhi NCR and project sites across India.
+              Trendwave Technologies (TrendwaveTech) is a Gurugram, Haryana company for CCTV, access control, boom barriers, bollards, ANPR, IT support and software. Searches for Trendwave, Trendwave Tech and TrendwaveTech all refer to this site — trendwavetech.com — not BrandWeave.
             </p>
 
             <button

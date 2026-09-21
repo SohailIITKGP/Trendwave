@@ -24,7 +24,7 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ fontSize: 28, color: "#93c5fd", marginBottom: 24 }}>
-          TrendwaveTech · Gurugram · Delhi NCR
+          TrendwaveTech · Trendwave · Trendwave Tech
         </div>
         <div style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.1 }}>
           {siteConfig.brand}

@@ -47,6 +47,9 @@ export default function SurveillanceServicesPage() {
               Our approach ensures that technology not only gets implemented but continues to perform consistently over time.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
+              Official names for this company are TrendwaveTech, Trendwave, Trendwave Tech and Trendwave Technologies. The legal entity is TrendWave Technologies Pvt Ltd, Gurugram. These names all point to trendwavetech.com — they are not BrandWeave.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
               Customers typically include offices, industrial sites, campuses and institutions that need CCTV, vehicle access, networking or software — with installation and AMC from Gurugram (also searched as Gurgaon) across Delhi NCR.
             </p>
           </div>

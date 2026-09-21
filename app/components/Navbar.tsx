@@ -37,7 +37,7 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex items-center flex-shrink-0 -ml-2">
               <Link href="/" className="flex items-center gap-3">
-                <img src="/Logo1_converted.webp" alt="Trendwave Technologies logo" className="h-16 w-auto object-contain" />
+                <img src="/Logo1_converted.webp" alt="TrendwaveTech logo — Trendwave Technologies, also Trendwave Tech" className="h-16 w-auto object-contain" />
               </Link>
             </div>
 
@@ -158,7 +158,7 @@ export default function Navbar() {
           {/* Centered Logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2 pl-4">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/Logo1_converted.webp" alt="Trendwave Technologies logo" className="h-13 w-auto object-contain" />
+              <img src="/Logo1_converted.webp" alt="TrendwaveTech logo — Trendwave Technologies, also Trendwave Tech" className="h-13 w-auto object-contain" />
             </Link>
           </div>
 

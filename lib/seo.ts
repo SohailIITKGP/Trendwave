@@ -47,11 +47,10 @@ export const siteConfig = {
     "kolkata",
     "Kharagpur"
   ],
-  defaultTitle:
-    "TrendwaveTech | Security Systems, IT Infrastructure & Technology Solutions",
+  defaultTitle: "TrendwaveTech | Trendwave Tech | Trendwave — Security & IT",
   defaultDescription:
-    "TrendwaveTech (Trendwave Technologies) in Gurugram, Haryana supplies and installs security systems, IT infrastructure and software — CCTV, access control, boom barriers, bollards, ANPR and IT support across Delhi NCR.",
-  ogImageAlt: "TrendwaveTech — security systems and IT infrastructure in Gurugram",
+    "TrendwaveTech is Trendwave Technologies, also searched as Trendwave and Trendwave Tech. Gurugram company for CCTV, access control, boom barriers, IT support and software — trendwavetech.com.",
+  ogImageAlt: "TrendwaveTech, also known as Trendwave and Trendwave Tech, Gurugram",
   mapsEmbedSrc:
     "https://maps.google.com/maps?q=304%20Welldone%20Tech%20Park%20Sector%2048%20Sohna%20Road%20Gurugram%20Haryana%20122018&output=embed",
   mapsSearchUrl:
@@ -172,7 +171,7 @@ export function buildPageMetadata({
       type: "website",
       locale: siteConfig.locale,
       url: canonical,
-      siteName: siteConfig.name,
+      siteName: "TrendwaveTech",
       title: ogTitle,
       description,
     },
@@ -189,11 +188,17 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness"],
     "@id": `${siteConfig.url}/#organization`,
-    name: siteConfig.name,
+    name: "TrendwaveTech",
     alternateName: [...siteConfig.alternateNames],
     legalName: siteConfig.legalName,
     description: siteConfig.defaultDescription,
     url: siteConfig.url,
+    brand: {
+      "@type": "Brand",
+      "@id": `${siteConfig.url}/#brand`,
+      name: "TrendwaveTech",
+      alternateName: ["Trendwave", "Trendwave Tech", "Trendwave Technologies"],
+    },
     email: siteConfig.email,
     telephone: siteConfig.phones.mobileTel,
     image: absoluteUrl("/Logo1_converted.webp"),
@@ -250,8 +255,8 @@ export function websiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${siteConfig.url}/#website`,
-    name: siteConfig.brand,
-    alternateName: [...siteConfig.alternateNames],
+    name: "TrendwaveTech",
+    alternateName: ["Trendwave", "Trendwave Tech", "Trendwave Technologies"],
     url: siteConfig.url,
     publisher: {
       "@id": `${siteConfig.url}/#organization`,

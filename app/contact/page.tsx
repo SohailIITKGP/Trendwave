@@ -16,7 +16,7 @@ export default function ContactPage() {
           Contact TrendwaveTech
         </h1>
         <p className="mt-4 max-w-3xl text-lg text-slate-600">
-          Trendwave Technologies (TrendwaveTech) works from Gurugram, Haryana. Use the details below for security systems, IT infrastructure or software work in Delhi NCR and other Indian sites.
+          Trendwave Technologies (TrendwaveTech), also called Trendwave and Trendwave Tech, works from Gurugram, Haryana. Use the details below for security systems, IT infrastructure or software.
         </p>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
