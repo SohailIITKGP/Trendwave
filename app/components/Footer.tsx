@@ -179,7 +179,7 @@ export default function Footer() {
         {/* Bottom Section - Copyright & Legal */}
         <div className="flex justify-center items-center w-full">
           <p className="text-[16px] text-white text-center">
-            &copy; {currentYear} {siteConfig.legalName}. TrendwaveTech · Trendwave · Trendwave Tech.
+            &copy; {currentYear} {siteConfig.legalName}. All rights reserved.
           </p>
         </div>
 

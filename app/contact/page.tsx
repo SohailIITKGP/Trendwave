@@ -18,6 +18,9 @@ export default function ContactPage() {
         <p className="mt-4 max-w-3xl text-lg text-slate-600">
           Trendwave Technologies (TrendwaveTech), also called Trendwave and Trendwave Tech, works from Gurugram, Haryana. Use the details below for security systems, IT infrastructure or software.
         </p>
+        <p className="mt-3 max-w-3xl text-base text-slate-600">
+          Official names for this company are TrendwaveTech, Trendwave, Trendwave Tech and Trendwave Technologies. The legal entity is TrendWave Technologies Pvt Ltd. These names all point to trendwavetech.com — they are not BrandWeave.
+        </p>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
           <div className="space-y-4 text-slate-700">

@@ -18,7 +18,7 @@ export default function WhyUs() {
 
           <h2 className="text-[32px] sm:text-[38px] lg:text-[44px] font-bold text-[#0f172a] leading-[1.2] mb-6 tracking-tight">
             Why Go with <br className="hidden sm:block lg:hidden" />
-            <span style={{ color: "var(--primary-accent-color)", fontWeight: 700 }}>TrendwaveTech</span>
+            <span style={{ color: "var(--primary-accent-color)", fontWeight: 700 }}>Trendwave</span>
           </h2>
 
           <p className="text-[16px] sm:text-[18px] text-[#475569] leading-[1.7] mb-8 max-w-[540px]">
