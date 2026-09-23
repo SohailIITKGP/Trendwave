@@ -11,7 +11,7 @@ export const siteConfig = {
     "Trendwave Technologies",
     "TrendwaveTech",
   ],
-  url: "https://www.trendwavetech.com",
+  url: "https://trendwavetech.com",
   locale: "en-IN",
   email: "office@trendwavetech.com",
   phones: {
