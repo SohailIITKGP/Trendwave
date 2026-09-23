@@ -1,5 +1,6 @@
 "use client";
 import Clinets from "@/app/components/Clinets";
+import { siteConfig } from "@/lib/seo";
 
 export default function SurveillanceServicesPage() {
   return (
@@ -45,13 +46,11 @@ export default function SurveillanceServicesPage() {
               <span className="block">Planning and Execution</span>
             </h2>
 
-            <p className="mt-6 text-lg leading-relaxed text-slate-700 sm:text-xl">
-              In today&apos;s market, many technology solutions look strong in planning but fail during real implementation. At Trendwave Technologies, we focus on closing this gap by delivering systems that are practical to deploy, easy to manage and reliable in everyday operations. Our office is in Gurugram, and we work across Delhi NCR with project deployment elsewhere in India.
-            </p>
-
-            <p className="mt-5 text-lg leading-relaxed text-slate-700 sm:text-xl">
-              Our approach ensures that technology not only gets implemented but continues to perform consistently over time.
-            </p>
+            {siteConfig.companyDescription.map((paragraph, index) => (
+              <p key={index} className={`${index === 0 ? "mt-6" : "mt-5"} text-lg leading-relaxed text-slate-700 sm:text-xl`}>
+                {paragraph}
+              </p>
+            ))}
           </div>
 
           <div className="relative overflow-hidden rounded-tl-[2.2rem] rounded-br-[2.2rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.15)]">

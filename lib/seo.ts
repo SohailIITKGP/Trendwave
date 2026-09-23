@@ -79,8 +79,12 @@ export const siteConfig = {
     "Puducherry",
   ],
   defaultTitle: "TrendwaveTech | Trendwave Tech | Trendwave — Security & IT",
+  companyDescription: [
+    "Trendwave Technologies is a leading provider of advanced IT and Security Solutions. We offer comprehensive security systems for commercial, industrial, and residential spaces, leveraging the latest technologies to deliver safety, efficiency, and control.",
+    "Our portfolio includes CCTV Surveillance Systems (Analog & IP-Based), Boom Barriers, Bollards, Tyre Killers, ANPR Systems, Access Control & Management Systems (ACMS), and customized Software Solutions, backed by professional implementation and support services.",
+  ],
   defaultDescription:
-    "TrendwaveTech is Trendwave Technologies, also searched as Trendwave and Trendwave Tech. Gurugram company for CCTV, access control, boom barriers, IT support and software — trendwavetech.com.",
+    "Trendwave Technologies provides CCTV, boom barriers, bollards, tyre killers, ANPR, ACMS and software for commercial, industrial and residential sites.",
   ogImageAlt: "TrendwaveTech, also known as Trendwave and Trendwave Tech, Gurugram",
   mapsEmbedSrc:
     "https://maps.google.com/maps?q=304%20Welldone%20Tech%20Park%20Sector%2048%20Sohna%20Road%20Gurugram%20Haryana%20122018&output=embed",
@@ -222,7 +226,7 @@ export function organizationJsonLd() {
     name: "TrendwaveTech",
     alternateName: [...siteConfig.alternateNames],
     legalName: siteConfig.legalName,
-    description: siteConfig.defaultDescription,
+    description: siteConfig.companyDescription.join(" "),
     url: siteConfig.url,
     brand: {
       "@type": "Brand",

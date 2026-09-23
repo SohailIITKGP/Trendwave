@@ -1,9 +1,8 @@
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, siteConfig } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "TrendwaveTech, Trendwave and Trendwave Tech | Gurugram",
-  description:
-    "TrendwaveTech is the same Gurugram company as Trendwave and Trendwave Tech (Trendwave Technologies). Office: Welldone Tech Park, Sector 48, Sohna Road.",
+  title: "Trendwave Technologies | IT and Security Solutions",
+  description: siteConfig.defaultDescription,
   path: "/company",
   absoluteTitle: true,
 });
